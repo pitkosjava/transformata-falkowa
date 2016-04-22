@@ -8,7 +8,7 @@ package pit.kos.falki.utils;
  *17 kwi 2016
  *13:40:00
  *
- *add 
+ *add 2
  */
 public enum CONVERT_TYP {
 	GRAY,COLOR;
