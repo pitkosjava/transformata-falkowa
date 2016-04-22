@@ -40,6 +40,7 @@ import pit.kos.falki.waves.typ.Daubechies1;
 
 /**
  * @author Piotr Kosmala 15 kwi 2016 13:59:34
+ * test app
  */
 public class Example extends JFrame {
 	private static final long serialVersionUID = -8830664557771078635L;
