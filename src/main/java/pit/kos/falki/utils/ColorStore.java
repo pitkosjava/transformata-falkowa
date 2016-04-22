@@ -7,6 +7,7 @@ import java.awt.Color;
 
 /**
  * @author Piotr Kosmala 22 kwi 2016 22:57:05
+ * 
  */
 public class ColorStore {
 	private int r;
@@ -16,6 +17,10 @@ public class ColorStore {
 
 	public ColorStore() 
 	{
+	}
+	
+	private void transform(){
+		
 	}
 	
 	public ColorStore(int r, int g, int b, int a) {
