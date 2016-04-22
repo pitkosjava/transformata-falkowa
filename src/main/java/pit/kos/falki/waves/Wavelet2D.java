@@ -28,6 +28,7 @@ public class Wavelet2D {
 	
 	private int[][] orginalSignal;
 	private int[][] preparedOrginalSignal;
+	
 	private CONVERT_TYP convert_typ;
 	
 
