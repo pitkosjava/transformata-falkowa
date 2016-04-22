@@ -24,8 +24,4 @@ public class PanelPhoto extends JPanel {
 	public void setBufferedImage(BufferedImage bufferedImage) {
 		this.bufferedImage = bufferedImage;
 	}
-		
-	
-	
-
 }

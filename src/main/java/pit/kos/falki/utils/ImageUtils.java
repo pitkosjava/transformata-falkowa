@@ -15,20 +15,21 @@ import java.awt.image.ColorConvertOp;
 public class ImageUtils {
 	
 	
-	public static BufferedImage makeImage(BufferedImage img,CONVERT_TYP typ) {
+	public static BufferedImage makeImage(BufferedImage img,CONVERT_TYP typ) 
+	{
 		if(typ==CONVERT_TYP.GRAY)
 		{
 			ColorConvertOp op = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
 			op.filter(img, img);
 			return img;
 		}
-		else {
+		else 
 			return img;
-		}
+		
 	}
 
-	public static int[][] convertIntoArrays(BufferedImage img,CONVERT_TYP typ) {
-		
+	public static int[][] convertIntoArrays(BufferedImage img,CONVERT_TYP typ) 
+	{
 		int[][] tabvalues = new int[img.getHeight()][img.getWidth()];
 		int rgb;
 		if(typ==CONVERT_TYP.COLOR)
@@ -37,39 +38,37 @@ public class ImageUtils {
 				for (int w = 0; w < img.getWidth(); ++w) 
 				{
 					rgb = img.getRGB(w, h);
-					tabvalues[h][w] = rgb;// gray;
+					tabvalues[h][w] = rgb;
 				}
 			return tabvalues;
 		}
 		else 
 		{
 			int  r, g, b, grayLevel, gray;
-			for (int h = 0; h < img.getHeight(); ++h)
-				for (int w = 0; w < img.getWidth(); ++w)
-				{
-					rgb = img.getRGB(w, h);
-					r = (rgb >> 16) & 0xFF;
-					g = (rgb >> 8) & 0xFF;
-					b = (rgb & 0xFF);
-					grayLevel = (r + g + b) / 3;
-					gray = (grayLevel << 16) + (grayLevel << 8) + grayLevel;
-					tabvalues[h][w] = gray;// gray;
-				}
+				for (int h = 0; h < img.getHeight(); ++h)
+					for (int w = 0; w < img.getWidth(); ++w)
+					{
+						rgb = img.getRGB(w, h);
+						r = (rgb >> 16) & 0xFF;
+						g = (rgb >> 8) & 0xFF;
+						b = (rgb & 0xFF);
+						grayLevel = (r + g + b) / 3;
+						gray = (grayLevel << 16) + (grayLevel << 8) + grayLevel;
+						tabvalues[h][w] = gray;
+					}
 			return tabvalues;
 		}
 	}
 	
 	public static BufferedImage convertArrayIntoImage(int[][] tabvalue,CONVERT_TYP typ) {
-
 		BufferedImage img=(typ==CONVERT_TYP.COLOR)?
 		 new BufferedImage(tabvalue[0].length,tabvalue.length, BufferedImage.TYPE_INT_RGB):
 		 new BufferedImage(tabvalue[0].length,tabvalue.length, BufferedImage.TYPE_BYTE_GRAY);
 
 		for (int h = 0; h < img.getHeight(); ++h)
 			for (int w = 0; w < img.getWidth(); ++w) 
-				img.setRGB(w, h,  tabvalue[h][w]);
-			
+					img.setRGB(w, h,  tabvalue[h][w]);
+		
 		return img;
 	}
-	
 }

@@ -94,25 +94,24 @@ public class Example extends JFrame {
 		jpanel.add(syntheseY);
 		jpanel.add(runTransformatdecYX);
 		jpanel.add(syntheseYX);
-		
 		this.add(jpanel, BorderLayout.NORTH);
 		this.add(panelPhoto, BorderLayout.CENTER);
 		this.setBounds(10, 10, 500, 400);
 		this.setVisible(true);
 		initActions();
-		
 	}
-	
 	
 	
 	public static void main(String[] args) {
 		new Example();
 	}
-	
 
-	private void  initActions(){
-		selectImage.addActionListener(e -> {
-			try {
+	private void  initActions()
+	{
+		selectImage.addActionListener(e -> 
+		{
+			try 
+			{
 				FileDialog fd = new FileDialog(frame, "Choose a file",FileDialog.LOAD);
 				fd.setDirectory("C:\\");
 				fd.setFile("*.jpg");
@@ -124,116 +123,159 @@ public class Example extends JFrame {
 				wavelet2D= new Wavelet2D(master, CONVERT_TYP.typ(color), new Daubechies1());
 				panelPhoto.setBufferedImage(wavelet2D.getImageOrginal());
 				panelPhoto.repaint();
-			} catch (Exception e1) {
+			} 
+			catch (Exception e1) 
+			{
 				e1.printStackTrace();
 			}
-	});
+		});
 
-	convertToGrayMay.addActionListener(e -> {
-			try {
-				if (wavelet2D != null) {
-					color=Integer.parseInt(convertColorTyp.getValue().toString());
-					test = ImageUtils.makeImage(wavelet2D.getImageOrginal(),CONVERT_TYP.typ(color));
-					panelPhoto.setBufferedImage(test);
+		convertToGrayMay.addActionListener(e -> 
+		{
+				try 
+				{
+					if (wavelet2D != null) 
+					{
+						color=Integer.parseInt(convertColorTyp.getValue().toString());
+						test = ImageUtils.makeImage(wavelet2D.getImageOrginal(),CONVERT_TYP.typ(color));
+						panelPhoto.setBufferedImage(test);
+						panelPhoto.repaint();
+					}
 					panelPhoto.repaint();
+				} 
+				catch (Exception e1) 
+				{
+					e1.printStackTrace();
 				}
-				panelPhoto.repaint();
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
-	});
-	convertToarraysAndImage.addActionListener(e -> {
-			try {
-				if (wavelet2D != null) {
-					color=Integer.parseInt(convertColorTyp.getValue().toString());
-					int[][] tables = ImageUtils.convertIntoArrays(wavelet2D.getImageOrginal(), CONVERT_TYP.typ(color));
-					test = ImageUtils.convertArrayIntoImage(tables,CONVERT_TYP.typ(color));
-					panelPhoto.setBufferedImage(test);
+		});
+		
+		convertToarraysAndImage.addActionListener(e -> 
+		{
+				try 
+				{
+					if (wavelet2D != null) 
+					{
+						color=Integer.parseInt(convertColorTyp.getValue().toString());
+						int[][] tables = ImageUtils.convertIntoArrays(wavelet2D.getImageOrginal(), CONVERT_TYP.typ(color));
+						test = ImageUtils.convertArrayIntoImage(tables,CONVERT_TYP.typ(color));
+						panelPhoto.setBufferedImage(test);
+						panelPhoto.repaint();
+					}
 					panelPhoto.repaint();
+				} 
+				catch (Exception e1) 
+				{
+					e1.printStackTrace();
 				}
-				panelPhoto.repaint();
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
-	});
-
-	runTransformatdecX.addActionListener(e -> {
-			try {
-				if (wavelet2D != null) {
-					wavelet2D.runDecompositionX(Integer.parseInt(jspindedcomositionDeep.getValue().toString()));
+		});
+	
+		runTransformatdecX.addActionListener(e -> 
+		{
+				try 
+				{
+					if (wavelet2D != null) 
+					{
+						wavelet2D.runDecompositionX(Integer.parseInt(jspindedcomositionDeep.getValue().toString()));
+						panelPhoto.setBufferedImage(wavelet2D.getImageDec());
+						panelPhoto.repaint();
+					}
+					panelPhoto.repaint();
+				} 
+				catch (Exception e1) 
+				{
+					e1.printStackTrace();
+				}
+		});
+		
+		
+		runTransformatdecY.addActionListener(e -> 
+		{
+			try 
+			{
+				if (wavelet2D != null) 
+				{
+					wavelet2D.runDecompositionY(Integer.parseInt(jspindedcomositionDeep.getValue().toString()));
 					panelPhoto.setBufferedImage(wavelet2D.getImageDec());
 					panelPhoto.repaint();
 				}
 				panelPhoto.repaint();
-			} catch (Exception e1) {
+			} 
+			catch (Exception e1) 
+			{
 				e1.printStackTrace();
 			}
-	});
+		});
+		
+		runTransformatdecYX.addActionListener(e -> 
+		{
+			try
+			{
+				if (wavelet2D != null) 
+				{
+					wavelet2D.runDecompositionYX(Integer.parseInt(jspindedcomositionDeep.getValue().toString()));
+					panelPhoto.setBufferedImage(wavelet2D.getImageDec());
+					panelPhoto.repaint();
+				}
+				panelPhoto.repaint();
+			} 
+			catch (Exception e1) 
+			{
+				e1.printStackTrace();
+			}
+		});
+		
+		syntheseX.addActionListener(e -> 
+		{
+			try 
+			{
+				if (wavelet2D != null) 
+				{
+					wavelet2D.runSynthesisX(Integer.parseInt(jspindedcomositionDeep.getValue().toString()));
+					panelPhoto.setBufferedImage(wavelet2D.getImageDec());
+					panelPhoto.repaint();
+				}
+				panelPhoto.repaint();
+			} 
+			catch (Exception e1) 
+			{
+				e1.printStackTrace();
+			}
+		});
+		
+		syntheseY.addActionListener(e -> 
+		{
+			try 
+			{
+				if (wavelet2D != null) 
+				{
+					wavelet2D.runSynthesisY(Integer.parseInt(jspindedcomositionDeep.getValue().toString()));
+					panelPhoto.setBufferedImage(wavelet2D.getImageDec());
+					panelPhoto.repaint();
+				}
+				panelPhoto.repaint();
+			} 
+			catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		});
+		
+		syntheseYX.addActionListener(e -> 
+		{
+			try 
+			{
+				if (wavelet2D != null) 
+				{
+					wavelet2D.runSynthesisYX(Integer.parseInt(jspindedcomositionDeep.getValue().toString()));
+					panelPhoto.setBufferedImage(wavelet2D.getImageDec());
+					panelPhoto.repaint();
+				}
+				panelPhoto.repaint();
+			} 
+			catch (Exception e1) 
+			{
+				e1.printStackTrace();
+			}
+		});
 	
-	
-	runTransformatdecY.addActionListener(e -> {
-		try {
-			if (wavelet2D != null) {
-				wavelet2D.runDecompositionY(Integer.parseInt(jspindedcomositionDeep.getValue().toString()));
-				panelPhoto.setBufferedImage(wavelet2D.getImageDec());
-				panelPhoto.repaint();
-			}
-			panelPhoto.repaint();
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-	});
-	runTransformatdecYX.addActionListener(e -> {
-		try {
-			if (wavelet2D != null) {
-				wavelet2D.runDecompositionYX(Integer.parseInt(jspindedcomositionDeep.getValue().toString()));
-				panelPhoto.setBufferedImage(wavelet2D.getImageDec());
-				panelPhoto.repaint();
-			}
-			panelPhoto.repaint();
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-	});
-	
-	syntheseX.addActionListener(e -> {
-		try {
-			if (wavelet2D != null) {
-				wavelet2D.runSynthesisX(Integer.parseInt(jspindedcomositionDeep.getValue().toString()));
-				panelPhoto.setBufferedImage(wavelet2D.getImageDec());
-				panelPhoto.repaint();
-			}
-			panelPhoto.repaint();
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-	});
-	
-	syntheseY.addActionListener(e -> {
-		try {
-			if (wavelet2D != null) {
-				wavelet2D.runSynthesisY(Integer.parseInt(jspindedcomositionDeep.getValue().toString()));
-				panelPhoto.setBufferedImage(wavelet2D.getImageDec());
-				panelPhoto.repaint();
-			}
-			panelPhoto.repaint();
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-	});
-	syntheseYX.addActionListener(e -> {
-		try {
-			if (wavelet2D != null) {
-				wavelet2D.runSynthesisYX(Integer.parseInt(jspindedcomositionDeep.getValue().toString()));
-				panelPhoto.setBufferedImage(wavelet2D.getImageDec());
-				panelPhoto.repaint();
-			}
-			panelPhoto.repaint();
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-	});
 	}
-	
-	
 }

@@ -12,62 +12,68 @@ public class Signal1D {
 
 	private double[] signal;
 	private int powerOftwo=0;
-	public Signal1D() {
+	
+	public Signal1D() 
+	{
 		this(1);
 	}
 
-	public Signal1D(int size) {
+	public Signal1D(int size) 
+	{
 		signal =new double[size];
-		for(int i=0;i<signal.length;i++){
+		for(int i=0;i<signal.length;i++)	
 			signal[i]=0.0;
-		}
 		cookingSignal();
 	}
 	
-	public Signal1D(double[] signal) {
+	public Signal1D(double[] signal) 
+	{
 		this.signal=signal;
 		cookingSignal();
 	}
 	
-	public Signal1D(int[] signal) {
+	public Signal1D(int[] signal) 
+	{
 		double[] buf= new double[signal.length];
-		for(int i=0;i<signal.length;i++){
+		for(int i=0;i<signal.length;i++)	
 			buf[i]=signal[i];
-		}
-		
 		this.signal=buf;
 		cookingSignal();
 	}
 
-	public boolean setElement(int index, double value) {
-		if (index < signal.length && index >= 0) {
+	public boolean setElement(int index, double value)
+	{
+		if (index < signal.length && index >= 0) 
+		{
 			signal[index] = value;
 			return true;
-		} else
+		} 
+		else
 			return false;
 	}
 
-	public void resize(int size) {
+	public void resize(int size) 
+	{
 		double[] tempSignal = new double[size];
-		for(int i=0;i<tempSignal.length;i++){
+		for(int i=0;i<tempSignal.length;i++)
 			tempSignal[i]=0.0;
-		}
 		for (int i = 0; i < signal.length; i++)
 			tempSignal[i] = signal[i];
 		signal = tempSignal;
 	}
 
 	// signal must power of two 2
-	private void cookingSignal() {
+	private void cookingSignal() 
+	{
 		int size = signal.length;
 		powerOftwo=0;
-		while (size!= 0) {
+		while (size!= 0) 
+		{
 			size=size >> 1;
 			powerOftwo++;
 		}
 		int newsize = (int) Math.pow(2, powerOftwo);
 		resize(newsize);
-
 	}
 
 	@Override
@@ -87,7 +93,4 @@ public class Signal1D {
 	public int getPowerOftwo() {
 		return powerOftwo;
 	}
-
-	
-
 }

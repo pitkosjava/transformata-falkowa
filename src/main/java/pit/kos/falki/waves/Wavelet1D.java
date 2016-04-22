@@ -51,7 +51,8 @@ public class Wavelet1D {
 	 * matrix save all step decompositions you can look rows 0 is signal column
 	 * to start is size is deep + signal rows
 	 */
-	public Wavelet1D(int deepDecomposition, double[] signal) { // pierwszy ustawia parametry
+	public Wavelet1D(int deepDecomposition, double[] signal) 
+	{
 		this.orginalSize=signal.length;
 		this.signal = new Signal1D(signal);
 		/* set max steep if you set max valu or more*/
@@ -59,17 +60,19 @@ public class Wavelet1D {
 		this.deepDecomposition = deepDecomposition;
 		this.actualSynteseIndex=deepDecomposition;
 	}
-	public Wavelet1D(int deepDecomposition) { // pierwszy ustawia parametry
-	
+	public Wavelet1D(int deepDecomposition) 
+	{ 
+	// to do
 	}
 	
 	/* signalD must by cooking use class Signal1D  */
-	
 
-	public void runDecomposition() {
+	public void runDecomposition() 
+	{
 		actualSignal = signal.getSignal();
 		actualDecompositionIndex = 0;
-		if(!isPerformance()){
+		if(!isPerformance())
+		{
 			while (actualDecompositionIndex < deepDecomposition)
 			{
 				actualSignal = typeWavelets.decomositionSignal(actualSignal,actualDecompositionIndex);
@@ -77,7 +80,8 @@ public class Wavelet1D {
 				actualDecompositionIndex++;
 			}
 		}
-		else {
+		else 
+		{
 			while (actualDecompositionIndex < deepDecomposition)
 			{
 				actualSignal = typeWavelets.decomositionSignal(actualSignal,actualDecompositionIndex);
@@ -87,12 +91,15 @@ public class Wavelet1D {
 	}
 	
 	
-	public double[] getSignalDecomposition(){
+	public double[] getSignalDecomposition()
+	{
 		return actualSignal;
 	}
 	
-	public void runSyntese() {
-		if(!isPerformance()){
+	public void runSyntese() 
+	{
+		if(!isPerformance())
+		{
 			while (actualSynteseIndex > LAST_INDEX_Synthesis)
 			{
 				actualSignal = typeWavelets.synthesisSignal(actualSignal,actualSynteseIndex);
@@ -100,19 +107,21 @@ public class Wavelet1D {
 				this.matrixDecomposition.setRow(actualDecompositionIndex-1, actualSignal);
 			}
 		}
-		else {
+		else 
+		{
 			while (actualSynteseIndex > LAST_INDEX_Synthesis)
 			{
 				actualSignal = typeWavelets.synthesisSignal(actualSignal,actualSynteseIndex);
-			
 				actualSynteseIndex--;
 			}
 		}
 	}
 
-	public boolean setElementSignal(int index, double value) {
+	public boolean setElementSignal(int index, double value)
+	{
 		boolean status = signal.setElement(index, value);
-		if (status) // if signal change must set before runDecomposition
+		// if signal change must set before runDecomposition
+		if (status) 
 		{
 			this.matrixDecomposition.setRow(0, this.signal.getSignal());
 		}
@@ -120,40 +129,47 @@ public class Wavelet1D {
 	}
 
 
-	public void setWavelet(DecompositionSynthesis decomposition){
+	public void setWavelet(DecompositionSynthesis decomposition)
+	{
 		this.typeWavelets = decomposition;
 	}
 	
-	public Signal1D getSignal() {
+	public Signal1D getSignal() 
+	{
 		return signal;
 	}
 
 	@Override
-	public String toString() {
+	public String toString() 
+	{
 		return performance? "enabled performance ":"Wavelet1D [matrixDecomposition=" + matrixDecomposition + "] \\n" + "[matrixSynthesis =" + matrixSynthesis + "] \n";
-		
 	}
 
-	public boolean isPerformance() {
+	public boolean isPerformance() 
+	{
 		return performance;
 	}
 
-	public void setPerformance(boolean performance) {
-		if(!performance){
+	public void setPerformance(boolean performance) 
+	{
+		// log on steep decomposition in matrix use this when you draw graph
+		if(!performance)
+		{
 			  this.matrixDecomposition = MatrixUtils.createRealMatrix(deepDecomposition + 1,this.signal.getSignal().length); // row cols
 			  this.matrixDecomposition.setRow(0, this.signal.getSignal());
 			  this.matrixSynthesis=MatrixUtils.createRealMatrix(deepDecomposition,this.signal.getSignal().length); // row cols
 		}
-		else {
+		else 
+		{
 			  this.matrixDecomposition = null;
 			  this.matrixSynthesis=null;
 		}
 		this.performance = performance;
 	}
-	private void setSignal(Signal1D signal) {
+	
+	private void setSignal(Signal1D signal) 
+	{
 		this.signal = signal;
 	}
-	
-
 }
 
