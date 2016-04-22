@@ -7,6 +7,7 @@ import java.awt.Color;
 
 /**
  * @author Piotr Kosmala 22 kwi 2016 22:57:05
+ * aaa
  */
 public class ColorStore {
 	private int r;
