@@ -19,11 +19,11 @@ public final class Daubechies1 implements DecompositionSynthesis {
 		 logger = LoggerFactory.getLogger(Daubechies1.class);
 	}
 	private final static int part = 2;
-	public final static double[] hid = { -0.7071, 0.7071 }; // hight decoomposition wavelet
-	public final static double[] lod = { 0.7071, 0.7071 }; // low  decoomposition wavelet
+	public final static double[] hid = { -0.7071067812, 0.7071067812 }; // hight decoomposition wavelet
+	public final static double[] lod = { 0.7071067812, 0.7071067812 }; // low  decoomposition wavelet
 
-	public final static double[] lir = { 0.7071, -0.7071 }; //hight synthesis wavelet
-	public final static double[] lor = { 0.7071, 0.7071 }; // low  synthesis wavelet
+	public final static double[] lir = {0.7071067812, -0.7071067812 }; //hight synthesis wavelet
+	public final static double[] lor = {0.7071067812,0.7071067812 }; // low  synthesis wavelet
 	
 	@Override
 	public double[] decomositionSignal(double[] signalTab, int step) {
