@@ -7,7 +7,6 @@ package pit.kos.falki.utils;
  * @author Piotr Kosmala
  *17 kwi 2016
  *13:40:00
- *add3
  */
 public enum CONVERT_TYP {
 	GRAY,COLOR;
