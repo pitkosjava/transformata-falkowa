@@ -134,7 +134,7 @@ public class Wavelet2D {
 				for(int x=0;x<preparedOrginalSignal.length;x++) 
 				{
 					tempArray=getRow(preparedOrginalSignal,x,scopeX);
-				    tempArray=runSynthese(tempArray);
+				    tempArray=  runSynthese(tempArray);
 				    preparedOrginalSignal=setRowIn2DArrays(preparedOrginalSignal,tempArray,x);
 				}
 			}

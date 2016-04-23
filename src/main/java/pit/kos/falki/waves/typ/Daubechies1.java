@@ -12,6 +12,7 @@ import pit.kos.falki.utils.DecompositionSynthesis;
 
 /**
  * @author Piotr Kosmala 13 kwi 2016 23:08:04
+ *  @see http://wavelets.pybytes.com/wavelet/db1/  
  */
 public final class Daubechies1 implements DecompositionSynthesis {
 	private static Logger logger;

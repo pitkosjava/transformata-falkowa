@@ -121,7 +121,7 @@ public class Example extends JFrame {
 				BufferedImage bi = ImageIO.read(file);
 				master = bi;
 				color=Integer.parseInt(convertColorTyp.getValue().toString());
-				wavelet2D= new Wavelet2D(master, CONVERT_TYP.typ(color), new Daubechies1());
+				wavelet2D= new Wavelet2D(master, CONVERT_TYP.typ(color), new Daubechies2());
 				panelPhoto.setBufferedImage(wavelet2D.getImageOrginal());
 				panelPhoto.repaint();
 			} 
