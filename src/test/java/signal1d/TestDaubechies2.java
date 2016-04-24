@@ -37,11 +37,9 @@ public class TestDaubechies2 {
 	public void testalgorithmDecompositionAndSynthese(){
 		
 		double[] singalOrgin={2,3,1,1,1,3,2,1,2,3,1,1,1,3,2,5};
-		
 		double[] decompositionSignal=decomositionSignal(singalOrgin);
-		logger.info("Orgin TestDaubechies2"+Arrays.toString(singalOrgin));
-	
-		logger.info("Decomposition TestDaubechies2"+Arrays.toString(decompositionSignal));
+		logger.debug("Orgin TestDaubechies2"+Arrays.toString(singalOrgin));
+		logger.debug("Decomposition TestDaubechies2"+Arrays.toString(decompositionSignal));
 		syntheseSignal(decompositionSignal);
 		
 	}
