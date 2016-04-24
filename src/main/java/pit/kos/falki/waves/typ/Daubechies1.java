@@ -12,7 +12,7 @@ import pit.kos.falki.utils.DecompositionSynthesis;
 
 /**
  * @author Piotr Kosmala 13 kwi 2016 23:08:04
- *  @see http://wavelets.pybytes.com/wavelet/db1/  
+ *  @see http://wavelets.pybytes.com/wavelet/db/  
  */
 public final class Daubechies1 implements DecompositionSynthesis {
 	private static Logger logger;
@@ -59,18 +59,15 @@ public final class Daubechies1 implements DecompositionSynthesis {
 		// next hi
 		for(int i=copyElements;i<copyElements*2;i++)
 			signalHi[(i-copyElements)*2+1]=signalTab[i];
-		// signalTab is sum arrays
-		logger.debug("signalLow "+Arrays.toString(signalLow));
-		logger.debug("signalHi "+Arrays.toString(signalHi));
 		
-		String temp="";
-		for(int i=0;i<copyElements*2;i++){
-			signalTab[i]=signalLow[i] * lor[0] + signalLow[i + 1]* lor[1]+
-					signalHi[i] * lir[0] + signalHi[i + 1]* lir[1];// next
-			temp+="| "+signalTab[i];
+		for(int i=0;i<copyElements*2;i++)
+		{
+			signalTab[i]=signalLow[i] * lor[0] + 
+						signalLow[i + 1]* lor[1]+
+						signalHi[i] * lir[0] + 
+						signalHi[i + 1]* lir[1];// next
+			
 		}
-		logger.debug("sum  "+temp);
-		logger.debug("output   "+Arrays.toString(signalTab));
 		return signalTab;
 	}
 

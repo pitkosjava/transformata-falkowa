@@ -1,34 +1,55 @@
 /**
  * 
  */
-package pit.kos.falki.waves.typ;
+package signal1d;
 
+import java.util.Arrays;
+
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import pit.kos.falki.utils.DecompositionSynthesis;
+import pit.kos.falki.waves.typ.Daubechies2;
 
 /**
- * @author Piotr Kosmala 23 kwi 2016 18:35:16 Wavelet Daubechies 2 (db2)
- * @see http://wavelets.pybytes.com/wavelet/db2/
+ * @author Piotr Kosmala
+ *24 kwi 2016
+ *12:09:39
  */
-public final class Daubechies2 implements DecompositionSynthesis {
-
+public class TestDaubechies2 {
 	private static Logger logger;
+	
 	static 
 	{
 		logger = LoggerFactory.getLogger(Daubechies2.class);
 	}
-
 	private final static int part = 2;
+	
 	public final static double[] hid = { -0.4829629131, 0.8365163037,-0.2241438680, -0.1294095226 }; // hight decoomposition wavelet
 	public final static double[] lod = { -0.1294095226, 0.2241438680,0.8365163037, 0.4829629131 }; // low decoomposition wavelet
 
 	public final static double[] lir = { -0.1294095226, -0.2241438680,	0.8365163037, -0.4829629131 }; // hight synthesis wavelet
 	public final static double[] lor = { 0.4829629131, 0.8365163037,0.2241438680, -0.1294095226 }; // low synthesis wavelet
 
-	@Override
-	public double[] decomositionSignal(double[] signalTab, int step) {
+
+
+	@Test
+	public void testalgorithmDecompositionAndSynthese(){
+		
+		double[] singalOrgin={2,3,1,1,1,3,2,1,2,3,1,1,1,3,2,5};
+		
+		double[] decompositionSignal=decomositionSignal(singalOrgin);
+		logger.info("Orgin TestDaubechies2"+Arrays.toString(singalOrgin));
+	
+		logger.info("Decomposition TestDaubechies2"+Arrays.toString(decompositionSignal));
+		syntheseSignal(decompositionSignal);
+		
+	}
+	
+	
+	
+	
+	public static double[] decomositionSignal(double[] signalTab) {
 		int orginalLenght = signalTab.length;
 		int copyLenght= orginalLenght+hid.length-part;
 	
@@ -55,10 +76,10 @@ public final class Daubechies2 implements DecompositionSynthesis {
 		}
 	
 		return orginalSignal;
-	}
-
-	@Override
-	public double[] synthesisSignal(double[] signalTab, int step) {
+	}	
+	
+	public static double[] syntheseSignal(double[] signalTab) {
+	
 		
 		int scope = part;
 		int scopHalf=signalTab.length/scope;
@@ -74,9 +95,12 @@ public final class Daubechies2 implements DecompositionSynthesis {
 		for(int i=scopHalf;i<scopHalf*2;i++)
 			higtSignal[(i-scopHalf)*2+1]=signalTab[i];
 		
-		lowSignal[signalTab.length+1]=signalTab[0]; // kopiujemy sygnal z poczatku na koniec srodkowy dodany nowy element
+		lowSignal[signalTab.length+1]=signalTab[0];
 		
-		higtSignal[signalTab.length+1]=signalTab[scopHalf]; // sygnal z poczatku na koncowy element
+		higtSignal[signalTab.length+1]=signalTab[scopHalf];
+	    logger.debug("low copy"+Arrays.toString(lowSignal));
+		
+		logger.debug("hi copy"+Arrays.toString(higtSignal));
 		
 		for(int i=0;i<signalTab.length;i++){
 			copySignal[i]=
@@ -88,8 +112,20 @@ public final class Daubechies2 implements DecompositionSynthesis {
 					higtSignal[i+1]* lir[1]+
 					higtSignal[i+2]* lir[2]+
 					higtSignal[i+3]* lir[3];
+					
 		}
+		
+
+		
+		logger.debug("syntheseSignal low"+Arrays.toString(lowSignal));
+		
+		logger.debug("syntheseSignal hi"+Arrays.toString(higtSignal));
+		
+		logger.debug("output syn "+Arrays.toString(copySignal));
 		return copySignal;
 	}	
-
+	
+	
+	
+	
 }
